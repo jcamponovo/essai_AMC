@@ -86,8 +86,8 @@ USER ${NB_USER}
 RUN npm config --global set prefix ${NPM_DIR}
 
 USER root
-RUN bash /tmp/install-miniconda.bash && \
-rm /tmp/install-miniconda.bash /tmp/environment.yml
+#RUN bash /tmp/install-miniconda.bash && \
+#rm /tmp/install-miniconda.bash /tmp/environment.yml
 
 
 
@@ -144,7 +144,7 @@ RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
 # when these change! Did I mention I hate Dockerfile cache semantics?
 
 LABEL repo2docker.ref="None"
-LABEL repo2docker.repo="https://github.com/jcamponovo/formation2020"
+LABEL repo2docker.repo="https://github.com/jcamponovo/essai_AMC"
 LABEL repo2docker.version="0.11.0"
 
 # We always want containers to run as non-root
