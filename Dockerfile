@@ -154,9 +154,9 @@ USER ${NB_USER}
 #RUN chmod +x postBuild
 #RUN ./postBuild
 
-# Add start script
-# Add entrypoint
-# COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+Add start script
+Add entrypoint
+COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
 ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
 
 # Specify the default command to run
