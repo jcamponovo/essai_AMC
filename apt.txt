@@ -35,10 +35,9 @@ libxml-sax-expat-perl
 lmodern
 fonts-adf-accanthis
 fonts-adf-berenis
-opencv
+python3-opencv
 fonts-adf-gillius
 texlive-fonts-extra-links
 texlive-fonts-recommended
 ruby
 libnet-dbus-perl
-ruby-interpreter
