@@ -14,7 +14,7 @@ RUN adduser --disabled-password \
     --gecos "Default user" \
     --uid ${NB_UID} \
     ${NB_USER}
-RUN apt install -y software-properties-common
+RUN apt-get install -y software-properties-common
 RUN add-apt-repository -y ppa:alexis.bienvenue/amc
 RUN apt-get-update
 RUN apt-get install -y auto-multiple-choice
