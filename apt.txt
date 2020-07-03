@@ -15,7 +15,6 @@ texlive-generic-recommended
 texlive-latex-extra
 texlive-fonts-extra
 imagemagick
-graphicsmagick-imagemagick-compat
 netpbm
 ghostscript
 poppler-utils
