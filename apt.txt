@@ -42,4 +42,4 @@ texlive-fonts-recommended
 ruby
 libnet-dbus-perl
 libopencv-dev
-auto-multiple-choice/xenial-backports
+auto-multiple-choice/xenial
