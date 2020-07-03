@@ -41,3 +41,4 @@ texlive-fonts-extra-links
 texlive-fonts-recommended
 ruby
 libnet-dbus-perl
+libopencv-dev
