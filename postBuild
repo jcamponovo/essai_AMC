@@ -1,7 +1,8 @@
-git clone https://gitlab.com/jojo_boulix/auto-multiple-choice.git
-cd auto-multiple-choice
+#git clone https://gitlab.com/jojo_boulix/auto-multiple-choice.git
+#cd auto-multiple-choice
 
-make version_files
-make
+#make version_files
+#make
 
-make install
+#make install
+synaptic install auto-multiple-choice
