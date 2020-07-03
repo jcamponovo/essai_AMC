@@ -1,0 +1,3 @@
+add-apt-repository ppa:alexis.bienvenue/amc
+apt-get update
+apt-get install auto-multiple-choice
