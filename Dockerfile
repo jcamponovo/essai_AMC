@@ -114,7 +114,7 @@ ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
 # example installing APT packages.
 # If scripts required during build are present, copy them
 
-COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+#COPY src/requirements.txt ${REPO_DIR}/requirements.txt
 USER root
 RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
 RUN apt-get -qq update && \
