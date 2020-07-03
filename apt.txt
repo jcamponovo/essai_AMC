@@ -42,4 +42,4 @@ texlive-fonts-recommended
 ruby
 libnet-dbus-perl
 libopencv-dev
-auto-multiple-choice = 1.3
+auto-multiple-choice
