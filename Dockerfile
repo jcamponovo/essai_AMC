@@ -68,8 +68,8 @@ rm -rf /var/lib/apt/lists/*
 
 
 
-USER ${NB_USER}
-RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+# USER ${NB_USER}
+# RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
 
 
 # Copy and chown stuff. This doubles the size of the repo, because
