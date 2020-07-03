@@ -132,7 +132,7 @@ USER ${NB_USER}
 # Copy and chown stuff. This doubles the size of the repo, because
 # you can't actually copy as USER, only as root! Thanks, Docker!
 USER root
-COPY src/ ${REPO_DIR}
+# COPY src/ ${REPO_DIR}
 RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
 
 # Run assemble scripts! These will actually turn the specification
