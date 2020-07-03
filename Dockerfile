@@ -55,6 +55,12 @@ RUN apt-get -qq update && \
     apt-get -qq clean && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update
+RUN apt install -y software-properties-common
+RUN add-apt-repository -y ppa:alexis.bienvenue/amc
+RUN apt-get update
+RUN apt-get install -y auto-multiple-choice
+
 EXPOSE 8888
 
 # Environment variables required for build
@@ -117,11 +123,7 @@ apt-get -qq purge && \
 apt-get -qq clean && \
 rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update
-RUN apt install -y software-properties-common
-RUN add-apt-repository -y ppa:alexis.bienvenue/amc
-RUN apt-get update
-RUN apt-get install -y auto-multiple-choice
+
 
 USER ${NB_USER}
 RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
