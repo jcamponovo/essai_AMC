@@ -151,8 +151,8 @@ LABEL repo2docker.version="0.11.0"
 USER ${NB_USER}
 
 # Make sure that postBuild scripts are marked executable before executing them
-RUN chmod +x postBuild
-RUN ./postBuild
+#RUN chmod +x postBuild
+#RUN ./postBuild
 
 # Add start script
 # Add entrypoint
