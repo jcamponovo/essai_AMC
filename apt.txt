@@ -1,0 +1,2 @@
+sudo
+auto-multiple-choice
