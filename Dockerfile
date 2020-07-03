@@ -16,6 +16,7 @@ RUN adduser --disabled-password \
     ${NB_USER}
 WORKDIR ${HOME}
 USER ${USER}
-RUN add-apt-repository ppa:alexis.bienvenue/amc
+RUN apt install -y software-properties-common
+RUN add-apt-repository -y ppa:alexis.bienvenue/amc
 RUN apt-get-update
-RUN apt-get install auto-multiple-choice
+RUN apt-get install -y auto-multiple-choice
