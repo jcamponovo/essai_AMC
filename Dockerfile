@@ -23,6 +23,7 @@ RUN apt-get -qq update && \
        less \
        nodejs \
        unzip \
+       npm
        > /dev/null && \
     apt-get -qq purge && \
     apt-get -qq clean && \
