@@ -74,11 +74,11 @@ ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
 ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
 # If scripts required during build are present, copy them
 
-COPY build_script_files/-2fhome-2fcamponovo-2f-2elocal-2flib-2fpython3-2e8-2fsite-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-8f6d96 /etc/profile.d/activate-conda.sh
+#COPY build_script_files/-2fhome-2fcamponovo-2f-2elocal-2flib-2fpython3-2e8-2fsite-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-8f6d96 /etc/profile.d/activate-conda.sh
 
-COPY build_script_files/-2fhome-2fcamponovo-2f-2elocal-2flib-2fpython3-2e8-2fsite-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-963bf6 /tmp/environment.yml
+#COPY build_script_files/-2fhome-2fcamponovo-2f-2elocal-2flib-2fpython3-2e8-2fsite-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-963bf6 /tmp/environment.yml
 
-COPY build_script_files/-2fhome-2fcamponovo-2f-2elocal-2flib-2fpython3-2e8-2fsite-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-1dc66a /tmp/install-miniconda.bash
+#COPY build_script_files/-2fhome-2fcamponovo-2f-2elocal-2flib-2fpython3-2e8-2fsite-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-1dc66a /tmp/install-miniconda.bash
 RUN mkdir -p ${NPM_DIR} && \
 chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
 
