@@ -14,7 +14,7 @@ texlive-latex-recommended
 texlive-generic-recommended
 texlive-latex-extra
 texlive-fonts-extra
-imagemagick (>= 7:6.5.5)
+imagemagick
 graphicsmagick-imagemagick-compat
 netpbm
 ghostscript
