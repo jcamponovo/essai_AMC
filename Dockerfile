@@ -58,7 +58,6 @@ RUN apt-get install -y jupyter
 
 COPY . ${HOME}
 USER root
-RUN chown -R ${NB_UID} ${HOME}
 
 RUN apt-get -qq update && \
 apt-get install --yes --no-install-recommends nano pandoc texlive-fonts-recommended texlive-generic-recommended texlive-xetex traceroute && \
@@ -74,8 +73,8 @@ rm -rf /var/lib/apt/lists/*
 
 # Copy and chown stuff. This doubles the size of the repo, because
 # you can't actually copy as USER, only as root! Thanks, Docker!
-USER root
-COPY src/ ${REPO_DIR}
+# USER root
+# COPY src/ ${REPO_DIR}
 RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
 USER ${NB_USER}
 
