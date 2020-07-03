@@ -11,8 +11,8 @@ RUN adduser --disabled-password \
     --uid ${NB_UID} \
     ${NB_USER}
 
-RUN apt-get update && ${HOME}/apt.txt | xargs apt-get install 
-RUN apt-get install jupyter
+RUN apt-get update && ${HOME}/apt.txt | xargs apt-get install -y
+RUN apt-get install -y jupyter
 
 COPY . ${HOME}
 USER root
