@@ -79,8 +79,8 @@ RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
 USER ${NB_USER}
 
 
-COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
-ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+# COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+# ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
 
 CMD ["jupyter","notebook","--ip","0.0.0.0"]
 
