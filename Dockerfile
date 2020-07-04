@@ -56,7 +56,7 @@ WORKDIR ${REPO_DIR}
 COPY . ${HOME}
 RUN chmod 744 ${HOME}/apt.txt
 RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
-RUN apt-get install software-properties-common
+RUN apt-get update && apt-get install -y software-properties-common
 RUN apt-get update && ${HOME}/apt.txt | xargs apt-get install -y
 RUN apt-get install -y jupyter
 RUN apt-get install -y texlive-latex-extra
