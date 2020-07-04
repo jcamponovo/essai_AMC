@@ -52,11 +52,11 @@ ARG REPO_DIR=${HOME}
 ENV REPO_DIR ${REPO_DIR}
 WORKDIR ${REPO_DIR}
 
+COPY . ${HOME}
 
 RUN apt-get update && ${HOME}/apt.txt | xargs apt-get install -y
 RUN apt-get install -y jupyter
 
-COPY . ${HOME}
 USER root
 RUN add-apt-repository ppa:alexis.bienvenue/amc
 
