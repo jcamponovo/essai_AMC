@@ -65,7 +65,7 @@ apt-get -qq purge && \
 apt-get -qq clean && \
 rm -rf /var/lib/apt/lists/*
 
-
+RUN bash ./postBuild
 
 # USER ${NB_USER}
 # RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
