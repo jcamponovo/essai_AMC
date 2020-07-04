@@ -90,7 +90,8 @@ RUN apt-get -qq update && apt-get -qq dist-upgrade -y
 # USER root
 # COPY src/ ${REPO_DIR}
 RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
-# USER ${NB_USER}
+
+USER ${NB_USER}
 RUN tlmgr init-usertree
 RUN PATH=$PATH:/usr/share/texlive
 RUN PATH=$PATH:/usr/share/texmf
