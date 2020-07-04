@@ -1,3 +1,4 @@
+texlive-xetex
 liblocale-gettext-perl
 libxml-simple-perl
 libxml-writer-perl
