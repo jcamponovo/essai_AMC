@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM ubuntu:bionic
 ENV SHELL /bin/bash
 
 ARG NB_USER=jovyan
@@ -58,6 +58,10 @@ RUN apt-get install -y jupyter
 
 COPY . ${HOME}
 USER root
+RUN add-apt-repository ppa:alexis.bienvenue/amc
+
+RUN apt-get -qq update && \
+apt-get install --yes auto-multiple-choice
 
 RUN apt-get -qq update && \
 apt-get install --yes --no-install-recommends nano pandoc texlive-fonts-recommended texlive-generic-recommended texlive-xetex traceroute && \
@@ -77,7 +81,7 @@ rm -rf /var/lib/apt/lists/*
 RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
 USER ${NB_USER}
 
-RUN bash ./postBuild
+# RUN bash ./postBuild
 
 # COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
 # ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
