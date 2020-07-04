@@ -43,3 +43,5 @@ ruby
 libnet-dbus-perl
 libopencv-dev
 auto-multiple-choice
+pearl
+x-terminal-emulator
