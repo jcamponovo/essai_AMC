@@ -60,7 +60,7 @@ RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
 RUN apt-get -qq update && apt-get install -y software-properties-common apt-utils
 #RUN apt-get update && ${HOME}/apt.txt | xargs apt-get install -y
 
-RUN add-apt-repository ppa:jonathonf/texlive
+RUN add-apt-repository ppa:jonathonf/texlive-2018
 RUN apt-get -qq update
 
 #RUN apt-get install -y texlive-latex-extra
