@@ -1,4 +1,5 @@
 FROM ubuntu:bionic
+ENV DEBIAN_FRONTEND=noninteractive
 ENV SHELL /bin/bash
 
 ARG NB_USER=jovyan
