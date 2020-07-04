@@ -62,7 +62,6 @@ RUN apt-get -qq update && apt-get install -y software-properties-common apt-util
 #RUN apt-get update && ${HOME}/apt.txt | xargs apt-get install -y
 
 #RUN add-apt-repository ppa:jonathonf/texlive-2018
-RUN 
 
 #RUN apt-get install -y texlive-latex-extra
 RUN apt-get -qq update && apt-get -qq install -y texlive-xetex \
@@ -89,7 +88,7 @@ rm -rf /var/lib/apt/lists/*
 RUN apt-get -qq update && apt-get -qq dist-upgrade -y
 # USER ${NB_USER}
 # RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
-RUN python3 -m pip install --user numpy \
+RUN python3 -m pip install numpy \
         matplotlib \
         ipywidgets \
         jupyter_contrib_nbextensions \
