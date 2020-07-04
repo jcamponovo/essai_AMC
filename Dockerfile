@@ -65,7 +65,6 @@ apt-get -qq purge && \
 apt-get -qq clean && \
 rm -rf /var/lib/apt/lists/*
 
-RUN bash ./postBuild
 
 # USER ${NB_USER}
 # RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
@@ -78,6 +77,7 @@ RUN bash ./postBuild
 RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
 USER ${NB_USER}
 
+RUN bash ./postBuild
 
 # COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
 # ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
