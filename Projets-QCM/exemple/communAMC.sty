@@ -1,0 +1,626 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{communAMC}
+
+%extensions
+
+\RequirePackage[utf8x]{inputenc}    
+\RequirePackage{graphicx,subfigure}
+\RequirePackage{pdfpages}
+\RequirePackage{multicol}
+\RequirePackage{multirow}				%package qui permet de fusionner cllules d'un tableau
+
+\RequirePackage[french]{babel}
+\RequirePackage{float}
+\RequirePackage{array}
+
+
+%% debug lua & tikz
+\RequirePackage{luatex85}
+\def\pgfsysdriver{pgfsys-pdftex.def}
+
+%randomisation
+%\directlua{math.randomseed(2048)}
+
+%boîte colorée
+\RequirePackage{tcolorbox}
+
+\RequirePackage[a4paper,DIV=12]{typearea}
+
+\RequirePackage[version=4]{mhchem}
+
+
+%encadrement formules
+\RequirePackage{amsmath}
+\RequirePackage{siunitx}
+\RequirePackage{ucs}
+
+%lignes en pointillés
+\RequirePackage{multido}
+
+%spectre
+\RequirePackage{pgf-spectra}
+%figure en chimie
+\RequirePackage{chemfig}
+
+\RequirePackage{csvsimple}
+
+%marge
+\RequirePackage{marginnote}
+\RequirePackage{geometry}
+% boîtes arrondies compétences
+\RequirePackage{fancybox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%image Tikz
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning}
+\usetikzlibrary{decorations.markings}
+\tikzstyle arrowstyle=[scale=1]
+\tikzstyle directed=[postaction={decorate,decoration={markings,mark=at position .65 with {\arrow[arrowstyle]{stealth}}}}]
+\tikzstyle reverse directed=[postaction={decorate,decoration={markings,mark=at position .65 with {\arrowreversed[arrowstyle]{stealth};}}}]
+\RequirePackage{pgfplots}
+
+\sisetup{locale = FR,detect-all}
+
+%AMC
+\RequirePackage[francais,bloc,completemulti]{automultiplechoice}   
+\everymath{\displaystyle}
+\AMCinterIrep=2mm
+\date{}
+%\RequirePackage[left=1cm,right=1cm,top=1cm,bottom=1cm]{geometry}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%																						%
+%								Quelques paramétrages AMC									%
+%				 																		%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\AMCtext{draft}{}
+%\AMCtext{message}{}
+
+\baremeDefautM{formula=(NBC/NB-NMC/NB),p=0}
+
+%commandes personnelles
+
+
+%Environnement doc sans ref doc
+\newcounter{num_doc}
+\newcommand{\doc}[2]{\refstepcounter{num_doc}
+\noindent
+\fbox{	
+  \begin{minipage}[c]{\linewidth}
+    \textbf{Document \arabic{num_doc} #1:}\\
+    #2
+  \end{minipage}
+}\medskip
+}
+
+%Commande aide
+\newcounter{num_aide}
+\newcommand{\aide}[2]{\refstepcounter{num_aide}
+\begin{minipage}[c]{0.45\linewidth}
+\begin{tcolorbox}[ colback=green!5!white, colframe=green,   rounded corners ]
+   \color{blue}
+   \textbf{Aide \arabic{num_aide} : #1}\\
+    #2
+\end{tcolorbox}
+ \end{minipage}
+\color{black}
+}
+%Environnement énonce
+\newcommand{\enonce}[1]{
+\noindent
+
+\begin{tcolorbox}[ colback=blue!5!white, colframe=white,   rounded corners ]
+  \begin{minipage}[c]{\linewidth}
+   \color{blue}
+    #1
+  \end{minipage}
+\end{tcolorbox}
+\medskip
+\color{black}
+
+%\fbox{	
+%  \begin{minipage}[c]{\linewidth}
+%     #1
+%  \end{minipage}
+%}\medskip
+}
+
+%scommande solution
+\newcommand{\sol}[1]{
+\begin{solution}
+#1
+\end{solution}
+}
+
+%commande affichage écriture scientifique
+\newcommand{\es}[1]{
+ \num[round-precision=#1,round-mode=figures,scientific-notation=true]}
+
+%commande affichage écriture scientifique
+\newcommand{\ens}[1]{
+ \num[round-precision=#1,round-mode=figures,scientific-notation=false]}
+
+%Commande titre
+\newcommand{\titre}[1]{
+\begin{minipage}[c]{0.9\textwidth}
+\begin{tcolorbox}[ colback=white!5!white, colframe=blue,   rounded corners ]
+   \begin{center}
+   \textbf{#1}
+   \end{center}
+ \end{tcolorbox}
+ \end{minipage}
+}
+
+%Commandes données
+\newcommand{\donnees}[1]{
+\noindent
+\begin{tcolorbox}[ colback=blue!5!white, colframe=white,   rounded corners ]
+  \begin{minipage}[c]{\linewidth}
+   \color{blue}
+   \textbf{Données:}
+   	\begin{itemize}
+   		 #1
+ 	\end{itemize}
+  \end{minipage}
+\end{tcolorbox}
+\medskip
+}
+
+
+%% titre avec comme argumment le titre, le nom et le prénom
+\newcommand{\titrenom}[1]{
+\setcounter{numquestions}{0}
+
+\pagestyle{headandfoot}
+
+\header{Physique-Chimie}{#1}{2018}
+\headrule
+
+\fbox{\nom  \prenom}
+
+\lfoot{}
+\cfoot{Page \thepage\ sur \numpages }
+\rfoot{}
+
+%\titre{La concentration}{\nom}{\prenom}
+
+\compteursazero
+
+
+\tableaunote
+
+\hrulefill
+}
+
+
+
+%%%%Environnement exercice "classique"
+%\newcounter{num_exo}
+%\newcommand{\exercice}[1]{
+%\refstepcounter{num_exo}
+%\noindent
+%\textbf{Exercice n°\arabic{num_exo}
+%: #1}
+%}
+
+
+%commande debut question numéroté 3 arguments titre exercice, doc, question{\part}
+\newcommand{\debutquestion}{
+\qformat{Exercice n°\thequestion \dotfill \emph{\totalpoints\ points}}
+\begin{questions}
+\setlength{\rightpointsmargin}{2cm}
+  \pointsinrightmargin
+   \pointname{ \points}
+   }
+  
+
+
+%% lignes en pointillés nb lignes par défaut 3 entrée entre []
+%\newcommand{\pointilles}[1][3]{%
+%\multido{}{#1}{\makebox[\linewidth]{\dotfill}\\[\parskip]
+%}}
+
+%commande cadre blanc [taille en cm]
+
+\newcommand{\cadreblanc}[1]{%
+\framebox[\linewidth][c]{%
+\rule{0mm}{#1cm}}\par}
+
+
+%Affichage des compétences
+\newboolean{comp}
+\newboolean{evalcomp}
+
+\newcommand{\comp}[1]
+{ \ifthenelse{\boolean{comp}}{\noindent
+    	\begin{tikzpicture}
+ 		  \node [align=left, fill=gray!15,draw,thick, minimum width=\linewidth, text width=0.97\linewidth, ] {
+		\sc{#1}
+			};
+		\end{tikzpicture}  
+%		\ifthenelse{\boolean{evalcomp}}{
+%		   \marginpar{\vspace{-2.5em}\resizebox{2cm}{!}{
+%				  \begin{tabular}{|c|c|c|c|}
+%					\hline
+%					A&B&C&D\large\strut \\
+%					\hline
+%				  \end{tabular}
+%				}}}\\
+    }\strut
+}
+
+\newcommand{\listecomp}{
+ \ifthenelse{\boolean{evalcomp}}{
+ \ifthenelse{\boolean{comp}}{
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+            \hline
+            \sc{Conn} &\sc{App}&\sc{Réa}&\sc{Ana}&\sc{Val}&\sc{Com}&\sc{Auto}\large\strut \\
+            \hline
+            & & & & & & \\
+            \hline
+          \end{tabular}
+\end{center}}
+}~
+}
+
+\addto\captionsfrench{\def\tablename{\textsc{Tableau}}}
+
+%compétences dans la marge
+\newcommand{\competence}[1]{\reversemarginpar
+\marginnote{
+\cornersize{2}
+\ovalbox{ \textbf{#1}}
+ }
+ }
+
+%tableau note
+\newcommand{\tableaunote}{
+\begin{minipage}{0.6\linewidth}
+Appréciations:
+\end{minipage}
+\begin{minipage}{0.25\linewidth}
+\begin{center}
+\hqword{Exercices:}
+\hsword{Notes:}
+\gradetable[h][questions]
+\end{center}
+\end{minipage}
+}
+
+
+
+
+%Commandes Tp
+
+
+
+%commande deuxcompétences
+\newcommand{\deuxcompetences}[2]{
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline 
+\textbf{Compétences} & \multicolumn{4}{c|}{Evaluation} \\ 
+\hline 
+\textbf{#1 }& A & B & C & D \\ 
+\hline 
+\textbf{#2} & A & B & C & D \\ 
+\hline 
+
+\end{tabular} 
+\end{center}
+}
+
+%commande troiscompétences
+\newcommand{\troiscompetences}[3]{
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline 
+\textbf{Compétences} & \multicolumn{4}{c|}{Evaluation} \\ 
+\hline 
+\textbf{#1 }& A & B & C & D \\ 
+\hline 
+\textbf{#2} & A & B & C & D \\ 
+\hline 
+\textbf{#3 }& A & B & C & D \\ 
+\hline 
+
+\end{tabular} 
+\end{center}
+}
+
+%%environnement \bo (B.O.)
+\newcommand{\bo}[1]{%
+\reversemarginpar
+\marginnote{
+\cornersize{2}
+\ovalbox{ \textbf{Compétences}}
+\cornersize{2}
+}
+ \begin{multicols}{2}
+ \begin{itemize}
+{ \itshape #1}
+ \end{itemize}
+ \end{multicols}
+ \noindent
+ %\hrulefill
+ }
+
+%% titre avec comme argument le titre sans le nom et le prénom
+\newcommand{\titreTp}[2]{\fbox{
+\begin{minipage}{0.25\linewidth}
+
+
+\includegraphics[width = \textwidth]{#1}
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
+\textbf{#2}
+\end{minipage}
+\begin{minipage}{0.25\linewidth}
+\begin{center}
+Sport
+\end{center}
+
+Nom:
+
+
+Prénom:
+\end{minipage}
+
+}
+}
+
+%% titrenom avec le nom et le prénom
+\newcommand{\titreTpnom}[2]{\fbox{
+\begin{minipage}{0.25\linewidth}
+
+
+\includegraphics[width = \textwidth]{#1}
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
+\textbf{#2}
+\end{minipage}
+\begin{minipage}{0.25\linewidth}
+\begin{center}
+Sport
+\end{center}
+
+Nom: \nom
+
+
+Prénom: \prenom
+\end{minipage}
+
+}
+}
+
+%%% Utilisation: \conclusion
+\newcommand{\conclusion}[1]{%
+\reversemarginpar
+\marginnote{
+\cornersize{2}
+\ovalbox{ \textbf{Conclusion}}
+\cornersize{2}
+}
+\noindent
+\fbox{	
+  \begin{minipage}[c]{\linewidth}
+    \bfseries{#1}
+  \end{minipage}
+}
+\medskip
+}
+
+%formule encadrée
+\newcommand{\formule}[1]{%
+$$\boxed {#1}$$
+}
+
+% lignes en pointillés nb lignes par défaut 3 entrée entre []
+\newcommand{\pointilles}[1][3]{%
+\multido{}{#1}{\makebox[\linewidth]{\dotfill}\\[\parskip]
+}}
+
+%% commande application
+\newcommand{\objectif}[1]{
+\reversemarginpar
+\marginnote{
+\noindent
+\cornersize{2}
+\ovalbox{ \textbf{Objectif}}}
+
+\vspace{0.5cm}
+\hspace{-0.8cm}
+\fcolorbox{gray}{lightgray}{
+\parbox{\linewidth}{#1
+}
+}
+\bigskip
+} 
+
+% environnement Appel en entrée votre expression, vos observations, votre protocole, vos résultats, vos conclusions
+\newcounter{num_appel}
+\newcommand{\appel}[1]{\refstepcounter{num_appel}
+\noindent
+\begin{center}
+\begin{tabular}{|c|p{9cm}|}
+\hline 
+\textbf{Appel n°\arabic{num_appel}:} & Appeler le professeur pour lui montrer #1 ou en cas de difficulté. \\ 
+\hline 
+\end{tabular} 
+\end{center}
+}
+
+
+%environnement experience
+\newcounter{num_expe}
+\newcommand{\experience}[1]{\refstepcounter{num_expe}
+\noindent
+\fbox{	
+  \begin{minipage}[c]{\linewidth}
+    \textbf{Expérience n°\arabic{num_expe} :}\\
+    #1
+  \end{minipage}
+  
+}\medskip
+
+}
+
+%environnement schéma experience
+\newcommand{\schema}{
+\noindent
+%\begin{minipage}[c]{\linewidth}
+\begin{tabular}{|p{7.3cm}|p{7.3cm}|}
+\hline 
+Schéma: & Observations: \\ 
+
+\rule[-1.5ex]{0pt}{18ex} &  \\ 
+\hline 
+\end{tabular} 
+%\end{minipage}
+}
+
+%environnement démontage paillasse
+\newcommand{\paillasse}{
+\noindent
+\begin{center}
+\textbf{\textit{Défaire le montage et ranger la paillasse avant de quitter le poste.}}
+\end{center}
+}
+
+%% commande \enonce publipostage 2 entrées: texte+nomfichier csv 
+
+\newcommand{\enonceTp}[2]{\newcommand{\sujet}{
+#1
+}
+\csvreader[head to column names]{#2}{nom=\nom, prenom=\prenom}{\sujet}
+
+}
+
+%commande affichage directlua
+\newcommand{\pdl}[1]{
+\directlua{tex.sprint(#1)}
+}
+
+%commande mylewis
+\makeatletter
+\newcommand\mylewis[3][2ex]{
+ %#1=longueur, #2=atome #3=liste des angles
+\tikzpicture[baseline,anchor=base]
+\node[inner sep=0pt,outer sep=1pt,circle,overlay](atom@@)at(0,0){\phantom{#2}};
+ \node[inner sep=0pt,outer sep=0pt]at(0,0){#2};
+\def\list@angle{#3,}
+\loop
+\expandafter\grab@angle\list@angle\@nil \pgfextractx\CF@dim{\pgfpointanchor{atom@@}\current@angle}\edef\CF@dimax{\the\CF@dim}
+ \pgfextracty\CF@dim{\pgfpointanchor{atom@@}\current@angle}\edef\CF@dimay{\the\CF@dim}
+  \pgfmathparse{#1*sin(\current@angle)/2}\let\offset@xx\pgfmathresult \pgfmathparse{#1*cos(\current@angle)/2}\let\offset@yy\pgfmathresult
+\draw[line width=.4pt,overlay] (\CF@dimax-\offset@xx,\CF@dimay+\offset@yy)--(\CF@dimax+\offset@xx,\CF@dimay-\offset@yy);
+ \unless\ifx\@empty\list@angle
+\repeat \endtikzpicture
+}
+\def\grab@angle#1,#2\@nil{\def\current@angle{#1}\def\list@angle{#2}}
+\makeatother
+
+
+%%%% AMC
+
+\newcommand{\questionAMC}[4]{
+\begin{question}{#1}
+#2
+\begin{multicols}{#3}
+\begin{reponses}
+#4	
+\end{reponses}
+\end{multicols}
+\end{question}
+}
+
+\newcommand{\questionAMCmult}[4]{
+\begin{questionmult}{#1}
+#2
+\begin{multicols}{#3}
+\begin{reponses}
+#4	
+\end{reponses}
+\end{multicols}
+\end{questionmult}
+}
+
+\newcommand{\questionAMCouverte}[3]{
+\begin{question}{#1}
+#2
+\def\AMCotextReserved{\emph{Reservé}}
+	\AMCOpen{lines = #3,dots=false}
+		{
+			\mauvaise[0]{0}\bareme{0}
+			\mauvaise[0.5]{0.5}\bareme{0.5}
+			\mauvaise[1]{1}\bareme{1}
+			\mauvaise[1.5]{1.5}\bareme{1.5}
+			\bonne[2]{2}\bareme{2}
+		}
+\end{question}
+}
+
+\newcommand{\questionAMCouverteun}[3]{
+\begin{question}{#1}
+#2
+\def\AMCotextReserved{\emph{Reservé}}
+	\AMCOpen{lines = #3,dots=false}
+		{
+			\mauvaise[0]{0}\bareme{0}
+			\mauvaise[0.5]{0.5}\bareme{0.5}
+			\bonne[1]{1}\bareme{1}
+		}
+\end{question}
+}
+
+\newcommand{\questionAMCouvertecommand}[4]{
+\begin{question}{#1}
+#2
+\def\AMCotextReserved{\emph{Reservé}}
+	\AMCOpen{lines = #3,dots=false,contentcommand=#4}
+		{
+			\mauvaise[0]{0}\bareme{0}
+			\mauvaise[0.5]{0.5}\bareme{0.5}
+			\mauvaise[1]{1}\bareme{1}
+			\mauvaise[1.5]{1.5}\bareme{1.5}
+			\bonne[2]{2}\bareme{2}
+		}
+\end{question}
+}
+
+
+\newcommand{\questionAMCouverteuncommand}[4]{
+\begin{question}{#1}
+#2
+\def\AMCotextReserved{\emph{Reservé}}
+	\AMCOpen{lines = #3,dots=false,contentcommand=#4}
+		{
+			\mauvaise[0]{0}\bareme{0}
+			\mauvaise[0.5]{0.5}\bareme{0.5}
+			\bonne[1]{1}\bareme{1}
+		}
+\end{question}
+}
+
+
+
+%%commande compteurs à zéro
+\newcommand{\compteursazero}{
+\setcounter{num_doc}{0}
+\setcounter{question}{0}
+\setcounter{part}{0}
+\setcounter{page}{1}
+%\setcounter{numpages}{1}
+\setcounter{numpoints}{0}
+\setcounter{num_aide}{0}
+%\setcounter{numquestions}{3}
+\setcounter{num_expe}{0}
+\setcounter{num_appel}{0}
+}
+
