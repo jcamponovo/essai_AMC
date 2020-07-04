@@ -77,7 +77,7 @@ RUN apt-get -qq update && apt-get -qq install -y texlive-xetex \
 #RUN apt-get -qq update && \
 #apt-get -qq install --yes auto-multiple-choice
 #RUN apt-get -qq install --yes auto-multiple-choice-common
-RUN apt-get -qq install -y jupyter notebook 
+RUN apt-get -qq install -y jupyter jupyter-notebook 
 
 RUN apt-get -qq update && \
 apt-get -qq install --yes --no-install-recommends nano pandoc traceroute && \
