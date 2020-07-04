@@ -64,22 +64,23 @@ RUN add-apt-repository ppa:jonathonf/texlive
 RUN apt-get -qq update
 
 #RUN apt-get install -y texlive-latex-extra
-RUN apt-get install -y texlive-full
+RUN apt-get -qq install -y texlive-fonts-extra-links
+RUN apt-get -qq install -y texlive-full
 
 RUN add-apt-repository ppa:alexis.bienvenue/test
 
 RUN apt-get -qq update && \
-apt-get install --yes auto-multiple-choice
-RUN apt-get install --yes auto-multiple-choice-common
-RUN apt-get install -y jupyter
+apt-get -qq install --yes auto-multiple-choice
+RUN apt-get -qq install --yes auto-multiple-choice-common
+RUN apt-get -qq install -y jupyter
 
 RUN apt-get -qq update && \
-apt-get install --yes --no-install-recommends nano pandoc traceroute && \
+apt-get -qq install --yes --no-install-recommends nano pandoc traceroute && \
 apt-get -qq purge && \
 apt-get -qq clean && \
 rm -rf /var/lib/apt/lists/*
 
-
+RUN apt-get -qq update && apt-get -qq dist-upgrade -y
 # USER ${NB_USER}
 # RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
 
