@@ -2,6 +2,7 @@ FROM ubuntu:bionic
 ENV DEBIAN_FRONTEND=noninteractive
 ENV SHELL /bin/bash
 
+
 ARG NB_USER=jovyan
 ARG NB_UID=1000
 ENV USER ${NB_USER}
@@ -88,8 +89,11 @@ rm -rf /var/lib/apt/lists/*
 # USER root
 # COPY src/ ${REPO_DIR}
 RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
-USER ${NB_USER}
-
+# USER ${NB_USER}
+RUN tlmgr init-usertree
+RUN PATH=$PATH:/usr/share/texlive
+RUN PATH=$PATH:/usr/share/texmf
+RUN PATH=$PATH:/usr/bin
 # RUN bash ./postBuild
 
 # COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
