@@ -45,3 +45,4 @@ libopencv-dev
 auto-multiple-choice
 pearl
 x-terminal-emulator
+texlive-full
