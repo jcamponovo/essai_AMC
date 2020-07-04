@@ -60,10 +60,10 @@ RUN apt-get update && apt-get install -y software-properties-common apt-utils
 #RUN apt-get update && ${HOME}/apt.txt | xargs apt-get install -y
 
 #RUN apt-get install -y texlive-latex-extra
-RUN apt-get install -y texlive-full
+#RUN apt-get install -y texlive-full
 
 USER root
-RUN add-apt-repository ppa:alexis.bienvenue/test
+#RUN add-apt-repository ppa:alexis.bienvenue/test
 
 RUN apt-get -qq update && \
 apt-get install --yes auto-multiple-choice
