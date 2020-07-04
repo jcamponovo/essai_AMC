@@ -67,10 +67,11 @@ RUN add-apt-repository ppa:alexis.bienvenue/amc
 
 RUN apt-get -qq update && \
 apt-get install --yes auto-multiple-choice
+RUN apt-get install --yes auto-multiple-choice-common
 RUN apt-get install -y jupyter
 
 RUN apt-get -qq update && \
-apt-get install --yes --no-install-recommends nano pandoc texlive-fonts-recommended texlive-generic-recommended texlive-xetex traceroute && \
+apt-get install --yes --no-install-recommends nano pandoc traceroute && \
 apt-get -qq purge && \
 apt-get -qq clean && \
 rm -rf /var/lib/apt/lists/*
