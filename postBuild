@@ -1,1 +1,2 @@
+tlmgr init-usertree
 tlmgr install xetex
