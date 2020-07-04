@@ -1,4 +1,5 @@
-FROM ubuntu:bionic
+FROM debian:buster 
+#ubuntu:bionic
 ENV DEBIAN_FRONTEND=noninteractive
 ENV SHELL /bin/bash
 
@@ -60,19 +61,24 @@ RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
 RUN apt-get -qq update && apt-get install -y software-properties-common apt-utils
 #RUN apt-get update && ${HOME}/apt.txt | xargs apt-get install -y
 
-RUN add-apt-repository ppa:jonathonf/texlive-2018
-RUN apt-get -qq update
+#RUN add-apt-repository ppa:jonathonf/texlive-2018
+RUN 
 
 #RUN apt-get install -y texlive-latex-extra
-RUN apt-get -qq install -y texlive-fonts-extra-links
-RUN apt-get -qq install -y texlive-full
+RUN apt-get -qq update && apt-get -qq install -y texlive-xetex \
+        texlive-fonts-recommended \
+        texlive-generic-recommended \
+        texlive-fonts-extra-links \
+        texlive-full \
+        auto-multiple-choice \
+        auto-multiple-choice-common
 
-RUN add-apt-repository ppa:alexis.bienvenue/test
+# RUN add-apt-repository ppa:alexis.bienvenue/test
 
-RUN apt-get -qq update && \
-apt-get -qq install --yes auto-multiple-choice
-RUN apt-get -qq install --yes auto-multiple-choice-common
-RUN apt-get -qq install -y jupyter
+#RUN apt-get -qq update && \
+#apt-get -qq install --yes auto-multiple-choice
+#RUN apt-get -qq install --yes auto-multiple-choice-common
+RUN apt-get -qq install -y jupyter notebook 
 
 RUN apt-get -qq update && \
 apt-get -qq install --yes --no-install-recommends nano pandoc traceroute && \
@@ -83,7 +89,22 @@ rm -rf /var/lib/apt/lists/*
 RUN apt-get -qq update && apt-get -qq dist-upgrade -y
 # USER ${NB_USER}
 # RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
-
+RUN python3 -m pip install --user numpy \
+        matplotlib \
+        ipywidgets \
+        jupyter_contrib_nbextensions \
+        scipy \
+        appmode \
+        image \
+        ipyvuetify \
+        bqplot \
+        panda \
+        voila \
+        voila-vuetify \
+        nbconvert \
+        rise \
+        jupyter-docx-bundler \
+        chardet
 
 # Copy and chown stuff. This doubles the size of the repo, because
 # you can't actually copy as USER, only as root! Thanks, Docker!
@@ -93,9 +114,8 @@ RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
 
 USER ${NB_USER}
 RUN tlmgr init-usertree
-RUN PATH=$PATH:/usr/share/texlive
-RUN PATH=$PATH:/usr/share/texmf
-RUN PATH=$PATH:/usr/bin
+ENV PATH /usr/share/texlive:/usr/share/texmf:/usr/bin:${PATH}
+
 # RUN bash ./postBuild
 
 # COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
