@@ -78,7 +78,7 @@ RUN apt-get -qq update && apt-get -qq install -y texlive-xetex \
 RUN apt-get -qq install -y jupyter jupyter-notebook 
 
 RUN apt-get -qq update && \
-apt-get -qq install --yes --no-install-recommends nano pandoc traceroute && \
+apt-get -qq install --yes --no-install-recommends nano pandoc traceroute python3-pip&& \
 apt-get -qq purge && \
 apt-get -qq clean && \
 rm -rf /var/lib/apt/lists/*
