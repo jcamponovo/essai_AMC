@@ -65,8 +65,6 @@ RUN apt-get -qq update && apt-get install -y software-properties-common apt-util
 
 #RUN apt-get install -y texlive-latex-extra
 RUN apt-get -qq update && apt-get -qq install -y texlive-xetex \
-        texlive-fonts-recommended \
-        texlive-generic-recommended \
         texlive-fonts-extra-links \
         texlive-full \
         auto-multiple-choice \
