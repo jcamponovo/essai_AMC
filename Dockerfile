@@ -1,4 +1,4 @@
-FROM debian:buster 
+FROM debian:testing
 #ubuntu:bionic
 ENV DEBIAN_FRONTEND=noninteractive
 ENV SHELL /bin/bash
